@@ -1,7 +1,7 @@
 import pandas as pd
 import spacy
 import fr_core_news_md
-#import re
+# import re
 import os
 
 
@@ -74,7 +74,6 @@ def prepare_data(seg_df, deriv_df):
     deriv_target_pos = [(word, pos)
                         for word, pos in zip(deriv_target, deriv_features_right)]
 
-
     deriv_dict = {}
     for k, v in zip(deriv_target_pos, deriv):
         if k not in deriv_dict:
@@ -126,7 +125,12 @@ def seg_deriv(token, deriv_dict, deriv_lemme_dict):
     return findings, False
 
 
-def tokenize(text):
+def flatten_arr(data):
+    """Flattens a list of strings using list comprehension."""
+    return [item for sublist in data for item in sublist]
+
+
+def tokenize(text, flatten_output=True):
     text_pos = nlp_fr(text)
     word_and_pos = [(token.text, 'VERB') if token.pos_ == 'AUX' else (
         token.text, token.pos_) for token in text_pos]
@@ -154,4 +158,8 @@ def tokenize(text):
                 findings.append(liste_flex[0])
             else:
                 findings.append(liste_deriv[0])
+
+    if flatten_output:
+        return flatten_arr(findings)
+
     return findings
