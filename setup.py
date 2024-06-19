@@ -22,7 +22,7 @@ if not os.path.exists(os.path.join(os.path.dirname(__file__), 'motliere', 'data'
 
 setup(
     name='motliere',
-    version='1.0.0',
+    version='1.0.1',
     description='A morphological segmentation tool for French !',
     author='Nicolas and Rémi',
     author_email='',
