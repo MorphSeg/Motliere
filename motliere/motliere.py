@@ -59,6 +59,8 @@ def prepare_data(seg_df, deriv_df):
     for k in seg_dict:
         seg_dict[k] = list(set(seg_dict[k]))
 
+    seg_dict = {key: val for key, val in sorted(seg_dict.items(), key = lambda ele: ele[1])}
+
     # Process derivation data
     deriv_source = deriv_df["source"].tolist()
     deriv_target = deriv_df["target"].tolist()
@@ -83,6 +85,10 @@ def prepare_data(seg_df, deriv_df):
     for k in deriv_dict:
         deriv_dict[k] = list(set(deriv_dict[k]))
 
+
+    deriv_dict = {key: val for key, val in sorted(deriv_dict.items(), key = lambda ele: ele[1])}
+
+    
     deriv_lemme_dict = {}
     for k, v in zip(deriv_target_pos, deriv_source):
         if k not in deriv_lemme_dict:
@@ -91,6 +97,8 @@ def prepare_data(seg_df, deriv_df):
 
     for k in deriv_lemme_dict:
         deriv_lemme_dict[k] = list(set(deriv_lemme_dict[k]))
+
+    deriv_lemme_dict = {key: val for key, val in sorted(deriv_lemme_dict.items(), key = lambda ele: ele[1])}
 
     return seg_dict, deriv_dict, deriv_lemme_dict
 
@@ -131,7 +139,26 @@ def flatten_arr(data):
 
 
 def tokenize(text, flatten_output=True):
+    """
+    Tokenizes the input text and performs morphological segmentation.
+
+    Parameters:
+    text (str): The input text to be tokenized.
+    flatten_output (bool): Whether to flatten the output list. Defaults to True.
+
+    Returns:
+    list: A list of tokenized words with morphological segmentation.
+          If flatten_output is True, the list is flattened.
+
+    Example:
+    tokenize("Une phrase qui sers d'exemple.")
+    ['Une', 'phrase', 'qui', 'servir', '#s', "d'", 'exemple', '.']
+    """
+    
+    # Process the input text with the NLP model
     text_pos = nlp_fr(text)
+
+    # Create a list of tuples with word and part-of-speech (POS) tag
     word_and_pos = [(token.text, 'VERB') if token.pos_ == 'AUX' else (
         token.text, token.pos_) for token in text_pos]
 
