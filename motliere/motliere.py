@@ -59,7 +59,7 @@ def prepare_data(seg_df, deriv_df):
     for k in seg_dict:
         seg_dict[k] = list(set(seg_dict[k]))
 
-    seg_dict = {key: val for key, val in sorted(seg_dict.items(), key = lambda ele: ele[1])}
+    seg_dict = {key: val for key, val in sorted(seg_dict.items(), key = lambda ele: ele[0])}
 
     # Process derivation data
     deriv_source = deriv_df["source"].tolist()
@@ -86,7 +86,7 @@ def prepare_data(seg_df, deriv_df):
         deriv_dict[k] = list(set(deriv_dict[k]))
 
 
-    deriv_dict = {key: val for key, val in sorted(deriv_dict.items(), key = lambda ele: ele[1])}
+    deriv_dict = {key: val for key, val in sorted(deriv_dict.items(), key = lambda ele: ele[0])}
 
     
     deriv_lemme_dict = {}
@@ -98,7 +98,7 @@ def prepare_data(seg_df, deriv_df):
     for k in deriv_lemme_dict:
         deriv_lemme_dict[k] = list(set(deriv_lemme_dict[k]))
 
-    deriv_lemme_dict = {key: val for key, val in sorted(deriv_lemme_dict.items(), key = lambda ele: ele[1])}
+    deriv_lemme_dict = {key: val for key, val in sorted(deriv_lemme_dict.items(), key = lambda ele: ele[0])}
 
     return seg_dict, deriv_dict, deriv_lemme_dict
 
