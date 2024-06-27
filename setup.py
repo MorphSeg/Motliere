@@ -22,15 +22,14 @@ if not os.path.exists(os.path.join(os.path.dirname(__file__), 'motliere', 'data'
 
 setup(
     name='motliere',
-    version='1.1.0',
-    description='A morphological segmentation tool for French !',
+    version='1.1.7',
+    description='A morphological and linguistically motivated segmentation tool for French !',
     author=['Nicolas', 'Rémi'],
     author_email=['E239002K@etu.univ-nantes.fr',
                  'E23B509C@etu.univ-nantes.fr'],
     license='gnu',
     packages=['motliere'],
-    url=['https://github.com/MorphSeg/Motliere/',
-   'https://gitlab.com/morphseg/motliere/'],
+    urls=['https://github.com/MorphSeg/Motliere/','https://gitlab.com/morphseg/motliere',],
     install_requires=[
         'numpy < 2.0.0',
         'pandas',
