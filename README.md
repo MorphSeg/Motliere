@@ -1,44 +1,32 @@
 # Motliere
-***A python package to segment french word into morphological subword.***
+***A Python package to segment French words into morphological subwords.***
 
 [![PyPI version](https://badge.fury.io/py/motliere.svg)](https://badge.fury.io/py/motliere)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Downloads](https://static.pepy.tech/badge/motliere)](https://pepy.tech/project/motliere)
-
-
-[![GitHub](https://img.shields.io/badge/GitHub-MorphSeg/Motliere-blue?logo=github)](https://github.com/MorphSeg/Motliere)
 [![Open Issues](https://img.shields.io/github/issues/MorphSeg/Motliere.svg)](https://github.com/MorphSeg/Motliere/issues)
-
-[![GitLab](https://img.shields.io/badge/GitLab-morphseg/Motiliere-orange?logo=gitlab)](https://gitlab.com/morphseg/motliere)
-[![Open Issues](https://img.shields.io/github/issues/MorphSeg/Motliere.svg)](https://gitlab.com/MorphSeg/Motliere/-/issues)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
 
-`motliere` is a Python library that provides a tokenizer linguistically motivated for french. It is designed to be an alternative to not linguistically motivated approaches and statistical one.
+`motliere` is a Python library that provides a linguistically motivated tokenizer for French. It is designed to be an alternative to non-linguistically motivated and statistical approaches.
+
+It uses the data from [UniMorph 4.0: Universal Morphology](https://aclanthology.org/2022.lrec-1.89) (Batsuren et al., LREC 2022) available on this [GitHub](https://github.com/unimorph/fra).
 
 ## Features
 
-- Tokenize: Tokenize a french text in a linguistically motivated approach using lexical bases.
+- Tokenize: Tokenizes French text using a linguistically motivated approach with lexical bases.
 
 ## Installation
 
 You can install `motliere` via pip:
 
-```bash
-pip install motliere
-```
-
+>```bash
+> pip install motliere
+>```
 
 ## Usage
 
 ### Tokenize
-
-`tokenize(text, flatten_output)`
-
-- **text**: The text you want to tokenize
-- **flatten_output**: A boolean set to true by default change that to have embedded list in return
-
-**Returns:** Return the list of all the token by default
 
 **Example:**
 
@@ -46,21 +34,21 @@ pip install motliere
 from motliere import tokenize
 
 # Example usage
-tk_text = tokenize("Une phrase qui est en français.")
+tk_text = tokenize("Une phrase constituée de mots Français.")
 print(tk_text)
 ```
+`Output : ['Une', 'phrase', 'constituer', '#ée', 'de', 'mot', '#s', 'France', '?ais', '.']`
+
+The *#* symbol is used to represent inflections, whereas the *?* symbol is used for derivations. The *?* symbol can appear after the derivation in the case of a prefix.
 
 ## License
 
-This project is licensed under the GNU GPL v3 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GNU GPL v3 License** - see the **[LICENSE](LICENSE)** file for details.
 
-## Authors
-
-- **Nicolas** - [Github](https://github.com/Kxa-M), [Gitlab](https://gitlab.com/users/Nicolas.G_/contributed)
-- **Rémi** - [Gitlab](https://gitlab.com/users/e23b509c/contributed)
+Note that the UniMorph files are under **[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)**, which is compatible with our license.
 
 ## Acknowledgments
-- We made this package during our internship at LS2N at the University of Nantes
-- For more information you can read our [report](https://gitlab.com/m1atal/ter/-/blob/main/TER_2024_Rapport.pdf) made during our 1st year master research project. (it's in french).
-- We would like to thanks our
-- academic advisor and friends for support and help tough the realisation of the project
+- We developed this package during our internship at [LS2N](https://www.ls2n.fr/) at the University of Nantes.
+- For more information, you can read our [report](https://gitlab.com/m1atal/ter/-/blob/main/TER_2024_Rapport.pdf) made during our 1st-year master's program for the Introduction to Research project (it's in French).
+- We would like to thank our academic advisor and friends for their support and help throughout the realization of the project.
+- We are also grateful to UniMorph for the colossal work freely available, which is at the root of this project.
