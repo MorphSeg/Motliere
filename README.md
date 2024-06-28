@@ -28,6 +28,13 @@ You can install `motliere` via pip:
 
 ### Tokenize
 
+`tokenize(text, flatten_output=True)`
+
+- **text**: The text you want to tokenize.
+- **flatten_output**: A boolean set to true by default. Change it to get an embedded list in return.
+
+**Returns:** A list of all the tokens by default.
+
 **Example:**
 
 ```python
