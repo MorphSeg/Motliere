@@ -62,5 +62,4 @@ This project is licensed under the GNU GPL v3 License - see the [LICENSE](LICENS
 ## Acknowledgments
 - We made this package during our internship at LS2N at the University of Nantes
 - For more information you can read our [report](https://gitlab.com/m1atal/ter/-/blob/main/TER_2024_Rapport.pdf) made during our 1st year master research project. (it's in french).
-- We would like to thanks our
-- academic advisor and friends for support and help tough the realisation of the project
+- We would like to thanks our academic advisor and friends for support and help tough the realisation of the project
