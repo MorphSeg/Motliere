@@ -1,8 +1,10 @@
+from collections import OrderedDict
 import pandas as pd
 import spacy
 import fr_core_news_md
 # import re
 import os
+
 
 
 def load_data():
@@ -23,6 +25,12 @@ def load_data():
 
 nlp_fr = spacy.load("fr_core_news_md")
 
+def remove_duplicates_preserve_order(seq):
+    seen = OrderedDict()
+    for item in seq:
+        if item not in seen:
+            seen[item] = None
+    return list(seen.keys())
 
 def prepare_data(seg_df, deriv_df):
     dict_uni_2_spacy = {
@@ -57,9 +65,7 @@ def prepare_data(seg_df, deriv_df):
         seg_dict[k].append(v)
 
     for k in seg_dict:
-        seg_dict[k] = list(set(seg_dict[k]))
-
-    seg_dict = dict(sorted(seg_dict.items())) #{key: val for key, val in sorted(seg_dict.items(), key = lambda ele: ele[0])}
+        seg_dict[k] = remove_duplicates_preserve_order(seg_dict[k])
 
     # Process derivation data
     deriv_source = deriv_df["source"].tolist()
@@ -83,10 +89,7 @@ def prepare_data(seg_df, deriv_df):
         deriv_dict[k].append(v)
 
     for k in deriv_dict:
-        deriv_dict[k] = list(set(deriv_dict[k]))
-
-
-    deriv_dict = dict(sorted(deriv_dict.items())) #{key: val for key, val in sorted(deriv_dict.items(), key = lambda ele: ele[0])}
+        deriv_dict[k] = remove_duplicates_preserve_order(deriv_dict[k])
 
     
     deriv_lemme_dict = {}
@@ -96,9 +99,8 @@ def prepare_data(seg_df, deriv_df):
         deriv_lemme_dict[k].append(v)
 
     for k in deriv_lemme_dict:
-        deriv_lemme_dict[k] = list(set(deriv_lemme_dict[k]))
+        deriv_lemme_dict[k] = remove_duplicates_preserve_order(deriv_lemme_dict[k])
 
-    deriv_lemme_dict = dict(sorted(deriv_lemme_dict.items())) #{key: val for key, val in sorted(deriv_lemme_dict.items(), key = lambda ele: ele[0])}
 
     return seg_dict, deriv_dict, deriv_lemme_dict
 
