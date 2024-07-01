@@ -8,6 +8,13 @@ import os
 
 
 def load_data():
+    """
+        Load segmentation and derivation data from CSV files.
+    
+        Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: DataFrames containing segmentation and derivation data.
+    """
+    
     base_path = os.path.dirname(__file__)
 
     seg_df = pd.read_csv(
@@ -22,10 +29,20 @@ def load_data():
         sep="\t")
     return seg_df, deriv_df
 
-
+# Load the French NLP model from spaCy
 nlp_fr = spacy.load("fr_core_news_md")
 
 def remove_duplicates_preserve_order(seq):
+     """
+        Remove duplicates from a sequence while preserving order.
+    
+        Parameters:
+        seq (list): The input sequence.
+    
+        Returns:
+        list: The sequence with duplicates removed.
+    """
+    
     seen = OrderedDict()
     for item in seq:
         if item not in seen:
@@ -33,6 +50,17 @@ def remove_duplicates_preserve_order(seq):
     return list(seen.keys())
 
 def prepare_data(seg_df, deriv_df):
+    """
+        Prepare the segmentation and derivation data.
+    
+        Parameters:
+        seg_df (pd.DataFrame): DataFrame containing segmentation data.
+        deriv_df (pd.DataFrame): DataFrame containing derivation data.
+    
+        Returns:
+        Tuple[dict, dict, dict]: Dictionaries containing prepared segmentation and derivation data.
+    """
+    
     dict_uni_2_spacy = {
         'ADJ': 'ADJ',
         'N': 'NOUN',
@@ -104,12 +132,23 @@ def prepare_data(seg_df, deriv_df):
 
     return seg_dict, deriv_dict, deriv_lemme_dict
 
-
+# Load the data
 seg_df, deriv_df = load_data()
 seg_dict, deriv_dict, deriv_lemme_dict = prepare_data(seg_df, deriv_df)
 
 
 def seg_flex(token, seg_dict):
+    """
+        Perform segmentation flexion lookup for a token.
+    
+        Parameters:
+        token (tuple): The token (word, POS) to lookup.
+        seg_dict (dict): Dictionary containing segmentation data.
+    
+        Returns:
+        Tuple[list, bool]: List of findings and a boolean indicating if any findings were made.
+    """
+    
     findings = []
     if token in seg_dict:
         find = seg_dict[token][0].split("|")
@@ -122,6 +161,18 @@ def seg_flex(token, seg_dict):
 
 
 def seg_deriv(token, deriv_dict, deriv_lemme_dict):
+    """
+        Perform segmentation derivation lookup for a token.
+    
+        Parameters:
+        token (tuple): The token (word, POS) to lookup.
+        deriv_dict (dict): Dictionary containing derivation data.
+        deriv_lemme_dict (dict): Dictionary containing lemme data.
+    
+        Returns:
+        Tuple[list, bool]: List of findings and a boolean indicating if any findings were made.
+    """
+    
     findings = []
     if token in deriv_dict:
         find = deriv_dict[token][0].split("-")
@@ -136,25 +187,34 @@ def seg_deriv(token, deriv_dict, deriv_lemme_dict):
 
 
 def flatten_arr(data):
-    """Flattens a list of strings using list comprehension."""
+    """
+        Flattens a list of lists.
+    
+        Parameters:
+        data (list): List of lists to flatten.
+    
+        Returns:
+        list: Flattened list.
+    """
+    
     return [item for sublist in data for item in sublist]
 
 
 def tokenize(text, flatten_output=True):
     """
-    Tokenizes the input text and performs morphological segmentation.
-
-    Parameters:
-    text (str): The input text to be tokenized.
-    flatten_output (bool): Whether to flatten the output list. Defaults to True.
-
-    Returns:
-    list: A list of tokenized words with morphological segmentation.
-          If flatten_output is True, the list is flattened.
-
-    Example:
-    tokenize("Une phrase qui sers d'exemple.")
-    ['Une', 'phrase', 'qui', 'servir', '#s', "d'", 'exemple', '.']
+        Tokenizes the input text and performs morphological segmentation.
+    
+        Parameters:
+        text (str): The input text to be tokenized.
+        flatten_output (bool): Whether to flatten the output list. Defaults to True.
+    
+        Returns:
+        list: A list of tokenized words with morphological segmentation.
+              If flatten_output is True, the list is flattened.
+    
+        Example:
+        tokenize("Une phrase qui sers d'exemple.")
+        ['Une', 'phrase', 'qui', 'servir', '#s', "d'", 'exemple', '.']
     """
     
     # Process the input text with the NLP model
