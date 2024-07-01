@@ -6,15 +6,14 @@ import fr_core_news_md
 import os
 
 
-
 def load_data():
     """
         Load segmentation and derivation data from CSV files.
-    
+
         Returns:
         Tuple[pd.DataFrame, pd.DataFrame]: DataFrames containing segmentation and derivation data.
     """
-    
+
     base_path = os.path.dirname(__file__)
 
     seg_df = pd.read_csv(
@@ -29,20 +28,22 @@ def load_data():
         sep="\t")
     return seg_df, deriv_df
 
+
 # Load the French NLP model from spaCy
 nlp_fr = spacy.load("fr_core_news_md")
 
+
 def remove_duplicates_preserve_order(seq):
-     """
+    """
         Remove duplicates from a sequence while preserving order.
-    
+
         Parameters:
         seq (list): The input sequence.
-    
+
         Returns:
         list: The sequence with duplicates removed.
     """
-    
+
     seen = OrderedDict()
     for item in seq:
         if item not in seen:
