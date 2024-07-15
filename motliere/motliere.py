@@ -214,8 +214,8 @@ def tokenize(text, flatten_output=True):
               If flatten_output is True, the list is flattened.
     
         Example:
-        tokenize("Une phrase qui sers d'exemple.")
-        ['Une', 'phrase', 'qui', 'servir', '#s', "d'", 'exemple', '.']
+        tokenize("Une phrase qui sert d'exemple.")
+        ['Une', 'phrase', 'qui', 'servir', '#t', "d'", 'exemple', '.']
     """
     
     # Process the input text with the NLP model
