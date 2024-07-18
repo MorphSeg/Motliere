@@ -50,7 +50,7 @@ The *#* symbol is used to represent inflections, whereas the *?* symbol is used 
 
 ## License
 
-This project is licensed under the **CC BY-SA 3.0 License** - see the **[LICENSE]((https://creativecommons.org/licenses/by-sa/3.0/))** page for details.
+This project is licensed under the **CC BY-SA 3.0 License** - see the **[LICENSE](https://creativecommons.org/licenses/by-sa/3.0/)** page for details.
 
 Note that the UniMorph files are under **[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)**, which is compatible with our license.
 
