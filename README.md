@@ -4,7 +4,8 @@
 [![PyPI version](https://badge.fury.io/py/motliere.svg)](https://badge.fury.io/py/motliere)
 [![Downloads](https://static.pepy.tech/badge/motliere)](https://pepy.tech/project/motliere)
 [![Open Issues](https://img.shields.io/github/issues/MorphSeg/Motliere.svg)](https://github.com/MorphSeg/Motliere/issues)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: CC BY-SA 3.0](https://img.shields.io/badge/License-CC%20BY--SA%203.0-blue.svg)](https://creativecommons.org/licenses/by-sa/3.0/)
+
 
 ## Overview
 
